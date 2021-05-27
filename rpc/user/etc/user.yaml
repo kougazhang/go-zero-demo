@@ -1,0 +1,14 @@
+Name: user.rpc
+ListenOn: 127.0.0.1:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: user.rpc
+# 以下为手动添加的配置
+# mysql 配置
+DataSource: root:1234@tcp(localhost:3306)/gozero
+# 对应的表
+Table: user
+# redis 作为换存储
+Cache:
+  - Host: localhost:6379

@@ -1,14 +1,8 @@
 ## 用户模块功能及 Api
-### 默认正常返回值
+### 默认返回值
 ```json
 {
-  "Ok": true
-}
-```
-### 默认异常返回值
-```json
-{
-  "Ok": false,
+  "ok": true,
   "error": ""
 }
 ```
@@ -36,27 +30,38 @@
 ```
 
 ### 3. 删除用户
-+ Api: /users/:id
-+ Method: GET
++ Api: /users/id/:id
++ Method: DELETE
 
 ### 4. 修改用户
-+ Api: /users/:id
-+ Method: POST
++ Api: /users/id/:id
++ Method: PUT
 ```json
 {
-  "id": 0,
   "username": "",
   "password": ""
 }
 ```
 
 ### 5. 查询用户
++ Api: /users/id/:id
++ Method: GET
++ Response:
+```json
+{
+  "id": 0,
+  "username": "",
+  "password": ""
+  }
+```
+
+### 6. 查询所有用户
 + Api: /users
 + Method: GET
 + Response:
 ```json
 [
-  {
+{
   "id": 0,
   "username": "",
   "password": ""

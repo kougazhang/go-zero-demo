@@ -1,0 +1,58 @@
+syntax = "v1"
+
+info(
+	title: "blog"
+	desc: "blog api"
+	author: "zhao.zhang"
+	email: "zhao.zhang@upai.com"
+)
+
+type reqUser {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type reqUserId {
+	Id int64 `path:"id"`
+}
+
+type reqUpdateUser {
+	Id       int64  `path:"id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type user {
+	Id       int64  `json:"id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type respLogin {
+	Token string `json:"token"`
+}
+
+type commResp {
+	Ok    bool   `json:"ok"`
+	Error string `json:"error"`
+}
+
+service blog-api {
+	@handler Login
+	post /login (reqUser) returns (respLogin)
+	
+	@handler AddUser
+	post /users (reqUser) returns (commResp)
+	
+	@handler DeleteUser
+	delete /users/id/:id (reqUserId) returns (commResp)
+	
+	@handler UpdateUser
+	put /users/id/:id (reqUpdateUser) returns (commResp)
+	
+	@handler GetUser
+	get /users/id/:id (reqUserId) returns (user)
+	
+	@handler GetAllUsers
+	get /users () returns ([]user)
+}

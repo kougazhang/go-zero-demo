@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package user;
+
+message reqUser {
+    string username = 1;
+    string password = 2;
+}
+
+message user {
+    int64 id = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message commResp {
+    bool ok = 1;
+    string error = 2;
+}
+
+message loginReq {
+    string username = 1;
+    string password = 2;
+}
+
+message respLogin {
+    string token = 1;
+}
+
+message reqUserId {
+    int64 id = 1;
+}
+
+message reqGetAll {
+}
+
+message respGetAll {
+    repeated user users = 1;
+}
+
+service users {
+    rpc login (reqUser) returns (respLogin);
+    rpc create (reqUser) returns (commResp);
+    rpc update (user) returns (commResp);
+    rpc delete (reqUserId) returns (commResp);
+    rpc get (reqUserId) returns (user);
+    rpc getAll (reqGetAll) returns (respGetAll);
+}
