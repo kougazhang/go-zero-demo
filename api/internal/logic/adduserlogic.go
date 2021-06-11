@@ -29,6 +29,7 @@ func (l *AddUserLogic) AddUser(req types.ReqUser) (*types.CommResp, error) {
 	resp, err := l.svcCtx.User.Create(l.ctx, &users.ReqUser{
 		Username: req.Username,
 		Password: req.Password,
+
 	})
 	if err != nil {
 		return nil, err
